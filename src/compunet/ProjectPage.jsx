@@ -1,6 +1,7 @@
 // src/pages/ProjectPage.js
 import React, { useState, useRef, useEffect } from "react";
 import { AiFillGoogleCircle, AiFillLike } from "react-icons/ai";
+import { CiLocationOn } from "react-icons/ci";
 import { FaFacebook, FaFolderOpen, FaLine, FaLink, FaRegFolderOpen } from "react-icons/fa";
 import { IoIosMail, IoLogoApple } from "react-icons/io";
 import { LiaEyeSolid } from "react-icons/lia";
@@ -35,11 +36,12 @@ const ProjectPage = () => {
     },
     // Add more items as needed
   ];
+  
   const [showProfilePopup, setShowProfilePopup] = useState(true);
   const [showXDCard, setShowXDCard] = useState(false);
   const [showCard, setShowCard] = useState(false);
   const [isProfileCardVisible, setIsProfileCardVisible] = useState(false);
-  const [hoveredElement, setHoveredElement] = useState(null); // 'header' or 'sidebar'
+  const [hoveredElement, setHoveredElement] = useState(null); 
   const profileCardRef = useRef(null);
   const profileImageHeaderRef = useRef(null);
   const profileImageSidebarRef = useRef(null);
@@ -66,48 +68,128 @@ const ProjectPage = () => {
   }, []);
 
   return (
-    <div className="font-sans bg-white flex">
+    <div className="font-sans bg-white ">
       <main>
         {/* Project-specific content */}
-        <h1 className="text-3xl p-4 flex items-center ml-[134px] ">
-          <div
-            ref={profileImageHeaderRef}
-            className="relative w-[40px] h-[40px] rounded-full overflow-hidden cursor-pointer mr-4"
-            onMouseEnter={() => {
-              setIsProfileCardVisible(true);
-              setHoveredElement("header");
-            }}
-          >
-            <img
-              src="https://mir-s3-cdn-cf.behance.net/user/100/6b05591628706871.67ad2a7389d1d.png"
-              alt="Profile"
-              className="w-full h-full object-cover"
-            />
-            {/* Hover overlay effect */}
-            <div
-              className={`absolute inset-0 bg-black transition-opacity duration-200 ${
-                isProfileCardVisible && hoveredElement === "header"
-                  ? "opacity-30"
-                  : "opacity-0"
-              }`}
-            ></div>
-          </div>
-          <div>
-            <p className=" text-black text-lg font-bold text-[18px]">
-              {" "}
-              Luxury Real Estate Project
-            </p>
-            <div className="flex">
-              <p className="text-[13px] hover:underline cursor-pointer">
-                DevPixel Lab <b className="px-2">•</b>
-              </p>
+       <div
+  className="relative"
+  onMouseEnter={() => setIsProfileCardVisible(true)}
+  onMouseLeave={() => setIsProfileCardVisible(false)}
+>
+  <div className="flex items-center gap-3 ml-38 mt-3 mb-6">
+  {/* Logo */}
+  <img
+    src="https://mir-s3-cdn-cf.behance.net/user/100/6b05591628706871.67ad2a7389d1d.png"
+    alt="Profile"
+    className="w-10 h-10 rounded-full"
+  />
 
-              <p className="text-[13px] hover:underline cursor-pointer">
-                Follow
-              </p>
-            </div>
-          </div>
-        </h1>
+  {/* Text Content */}
+  <div>
+    <p className="text-black font-bold text-[16px]">
+      Luxury Real Estate Website
+    </p>
+
+    {/* Username + Follow */}
+    <div className="flex items-center text-[13px] text-gray-700">
+     <b>DevPixel Lab
+</b>
+      <b className="px-1">•</b>
+
+      <span className="hover:underline cursor-pointer text-blue-600">
+        Follow
+      </span>
+    </div>
+  </div>
+</div>
+
+
+  {isProfileCardVisible && (
+    <div
+      ref={profileCardRef}
+      className="absolute top-6 left-0 w-78 bg-white shadow-lg border rounded-lg p-4 z-50 h-100 "
+    >
+    
+  <div className="flex items-center gap-3 relative">
+  {/* Background Images Container */}
+  <div className="absolute inset-0 flex gap-1 z-0">
+    <img
+      src="https://mir-s3-cdn-cf.behance.net/projects/202_webp/6f5a70225446449.Y3JvcCwyNDI0LDE4OTYsMCww.png"
+      alt=""
+      className="w-17 h-18 object-cover "
+    />
+    <img
+      src="https://mir-s3-cdn-cf.behance.net/projects/202_webp/994f28225524699.Y3JvcCwyNDI0LDE4OTYsMCww.png"
+      alt=""
+      className="w-17 h-18 object-cover "
+    />
+    <img
+      src="https://mir-s3-cdn-cf.behance.net/projects/202_webp/885d73226659893.Y3JvcCw5MjA1LDcyMDAsMjA1LDA.png"
+      alt=""
+      className="w-17 h-18 object-cover "
+    />
+    <img
+      src="https://mir-s3-cdn-cf.behance.net/projects/max_808/88f54e224349179.Y3JvcCw5MjA1LDcyMDAsMjA1LDA.png"
+      alt=""
+      className="w-17 h-18 object-cover"
+    />
+  </div>
+
+  {/* Circle with D in front */}
+  <div className="relative w-19 h-19 rounded-full bg-black flex items-center justify-center text-white text-xl font-bold  ml-24  mt-10">
+    
+ <img
+    src="https://mir-s3-cdn-cf.behance.net/user/100/6b05591628706871.67ad2a7389d1d.png"
+    alt="Profile"
+    className="w-16 h-16 rounded-full"
+  />
+  </div>
+ 
+  {/* Text content */}
+</div>
+  <div className="z-10 mt-2">
+    
+ <p className="text-black font-bold text-[16px] text-center">
+      DevPixel Lab
+    </p>
+    <p className=" text-[12px] text-gray-500 text-center flex gap-2 ml-22">
+      <CiLocationOn className="mt-1"/>
+      Bangladesh
+      </p>
+  </div>
+ <div className="flex gap-2 ml-13 mt-3">
+  {/* Freelance Button */}
+  <span className="px-3 py-1 border border-pink-400 text-pink-600 text-sm font-semibold rounded-full">
+    Freelance
+  </span>
+
+  {/* Full-Time Button */}
+  <span className="px-3 py-1 border border-cyan-400 text-cyan-700 text-sm font-semibold rounded-full ">
+    Full-Time
+  </span>
+</div>
+
+
+      <div className="flex justify-between text-sm text-gray-600 mt-5">
+        <div><b>2.2K</b> Appreciations</div>
+        <div><b>319</b> Followers</div>
+        <div><b>19.9K</b> Views</div>
+      </div>
+      <div className="mt-6 flex gap-2">
+        <button className="flex-1 bg-blue-600 text-white text-sm py-1 rounded-full">
+          + Follow
+        </button>
+      </div>
+      <div className="mt-3 flex gap-2">
+
+        <button className="flex-1 border py-1 rounded-full text-18">
+        📥  Hire
+        </button>
+      </div>
+    </div>
+  )}
+</div>
+
 
         <div className="relative group w-[970px] ml-[150px]">
           {/* Main Image */}
@@ -164,7 +246,7 @@ const ProjectPage = () => {
         />
 
         <div className="flex justify-center items-center mt-1 ">
-          <div className="bg-white shadow-2xl  p-10 w-[980px] ml-36 text-center text-black">
+          <div className="bg-white shadow-2xl  p-10 w-[980px]  text-center text-black">
             <p className="text-xl  mb-2 font-bold text-[28px]">Let's Contact</p>
             <div className="group inline-block relative cursor-pointer">
               <p className="mb-2 text-blue-700 text-[28px]">
@@ -276,7 +358,7 @@ https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/56946a225524699.681e
   {/* Sign Up Section */}
  <div>
    <div className="mb-8 pb-6 border-b border-gray-200">
-    <h3 className="text-[30px] font-bold mb-2">Sign up to join the conversation</h3>
+    <h3 className="text-[27px] font-bold mb-2">Sign up to join the conversation</h3>
     <p className="text-gray-600 mb-4 text-[13px]">
      Add your feedback for DevPixel Lab’s project by signing in or signing up.
     </p>
@@ -345,6 +427,54 @@ https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/56946a225524699.681e
         </div>
       </div>
 
+       <div className="flex items-start gap-4">
+        <img 
+          src="https://randomuser.me/api/portraits/men/22.jpg" 
+          className="w-12 h-12 rounded-full object-cover"
+          alt="Falyaz Bin Noor"
+        />
+        <div>
+          <div className="flex items-center gap-3">
+            <span className="font-medium">Falyaz Bin Noor</span>
+            <span className="text-gray-500 text-sm">6 days ago</span>
+          </div>
+          <p className="text-gray-800 mt-1">Your effort shows—amazing work!</p>
+        </div>
+      </div>
+
+
+       <div className="flex items-start gap-4">
+        <img 
+          src="https://randomuser.me/api/portraits/men/22.jpg" 
+          className="w-12 h-12 rounded-full object-cover"
+          alt="Falyaz Bin Noor"
+        />
+        <div>
+          <div className="flex items-center gap-3">
+            <span className="font-medium">Falyaz Bin Noor</span>
+            <span className="text-gray-500 text-sm">6 days ago</span>
+          </div>
+          <p className="text-gray-800 mt-1">Your effort shows—amazing work!</p>
+        </div>
+      </div>
+
+       <div className="flex items-start gap-4">
+        <img 
+          src="https://randomuser.me/api/portraits/men/22.jpg" 
+          className="w-12 h-12 rounded-full object-cover"
+          alt="Falyaz Bin Noor"
+        />
+        <div>
+          <div className="flex items-center gap-3">
+            <span className="font-medium">Falyaz Bin Noor</span>
+            <span className="text-gray-500 text-sm">6 days ago</span>
+          </div>
+          <p className="text-gray-800 mt-1">Your effort shows—amazing work!</p>
+        </div>
+      </div>
+
+
+
       {/* View More Button */}
      
     </div>
@@ -400,43 +530,20 @@ https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/56946a225524699.681e
   </div>
 
   {/* Project Info Section */}
-  <div className="grid grid-cols-2 gap-8">
-    {/* Left Column */}
-    <div>
-      <div className="mb-6">
-        <h4 className="text-sm font-medium text-gray-500 mb-3">TOOLS</h4>
-        <div className="flex flex-wrap gap-2">
-          {['Xd', 'Photoshop', 'Stock', 'Figma'].map((tool, index) => (
-            <span key={index} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
-              {tool}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        <h4 className="text-sm font-medium text-gray-500 mb-3">CREATIVE FIELDS</h4>
-        <div className="flex flex-wrap gap-2">
-          {['Web Design', 'UI/UX', 'Interaction Design', 'real estate', 'luxury website'].map((field, index) => (
-            <span key={index} className="bg-gray-100 px-3 py-1 rounded-full text-sm">
-              {field}
-            </span>
-          ))}
-        </div>
-      </div>
+ <div className="group relative inline-block mb-30   hover:bg-blue-100 transition-colors w-110 text-center  pt-10 pb-10 mt-10">
+      {/* Hover trigger with BACKGROUND color change */}
+      <span className=" cursor-pointer text-blue  duration-200 w-100">
+        See More Comments
+      </span>
     </div>
-
-   
-  
-  </div>
 
 
  </div>
 
-<div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 w-[700px]">
+<div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 w-[400px] ml-9">
   {/* Owner Section */}
   <div className="mb-6">
-    <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">OWNER</h4>
+    <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3"></h4>
     <div className="flex items-center gap-4">
       <img 
         src="https://mir-s3-cdn-cf.behance.net/user/100/6b05591628706871.67ad2a7389d1d.png" 
@@ -453,11 +560,11 @@ https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/56946a225524699.681e
       </div>
     </div>
     <div className="flex gap-3 mt-4 ">
-      <button className="flex-1  bg-blue-600 hover:bg-gray-100 text-gray-800 py-2 rounded-md text-sm font-medium transition border border-gray-200">
+      <button className="flex-1  bg-blue-600 hover:bg-gray-100 text-gray-800 py-2 rounded-md text-sm font-medium transition border border-gray-200 pr-3">
         Follow
       </button>
     </div>
-     <button className="flex-1 bg-gray-100 hover:bg-blue-200  py-2 p-2 rounded-md  pl-38 pr-38 mt-4 text-sm font-medium ">
+     <button className="flex-1 bg-gray-100 hover:bg-blue-200  py-2 p-2 rounded-md  pl-38 pr-43 pr-38 mt-4 text-sm font-medium ">
         Hire
       </button>
   </div>
@@ -471,11 +578,7 @@ https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/56946a225524699.681e
 
 
 
- <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-200 max-w-[350px]">
-  {/* Owner Section */}
- 
-
-  {/* Project Title - Reduced size */}
+ <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-200 w-[360px] mb-3">
   <h3 className="text-base  text-[13px] font-bold mb-0.5 leading-tight">Elevate your lifestyle - E-Commee Website..</h3>
   <h4 className="text-[12px] text-gray-600 mb-3 leading-tight mt-4">Elevate your lifestyle - E-Commerce Website</h4>
 
@@ -515,7 +618,7 @@ https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/56946a225524699.681e
 
 
   {/* Tools Section */}
- <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 w-[340px]">
+ <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 w-[360px]">
   {/* Tools Section */}
   <div className="mb-6">
     <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">TOOLS</h4>
@@ -586,21 +689,18 @@ https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/56946a225524699.681e
 </div>
 <p>Figma</p>
 
-      {/* Figma Tool */}
-      
     </div>
   </div>
 
-  {/* Creative Fields Section */}
   
 </div>
 
- <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 w-[340px]">
-  {/* Tools Section */}
+ <div className="bg-white p-6  shadow-sm border border-gray-100 w-[360px]">
+  
   <div className="mb-6">
     <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Creative Fields</h4>
     <div className="grid  gap-3 justify-center">
-      {/* XD Tool */}
+      
       <div
   className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg w-78 justify-center bg-cover bg-center text-white h-11"
   style={{
@@ -621,7 +721,6 @@ https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/56946a225524699.681e
   </div>
 </div>
       
-      {/* Photoshop Tool */}
      <div
   className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg w-78 justify-center bg-cover bg-center text-white h-11"
   style={{
@@ -644,7 +743,6 @@ https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/56946a225524699.681e
   </div>
 </div>
       
-      {/* Stock Tool */}
       <div
   className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg w-78 justify-center bg-cover bg-center text-white h-11"
   style={{
@@ -678,11 +776,15 @@ https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/56946a225524699.681e
 
 
 
+
+
         
       </main>
+
+      
     
 
-      <div className="mt-[125px] ml-[19px]  relative">
+      <div className=" ml-[19px]  relative">
         <div
           ref={profileImageSidebarRef}
           className="fixed top-[120px] ] flex flex-col items-center w-[70px] z-50 select-none left-[1140px] mt-13"
@@ -913,140 +1015,136 @@ https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/56946a225524699.681e
                 Hire
               </button>
             </div>
+            
           </div>
+          
         )}
       </div>
+<div className="  ">
+  <main className="flex-1">
+  </main>
 
-      {/* Original Profile Card - Shows near header image when hovering */}
-      {isProfileCardVisible && hoveredElement === "header" && (
-        <div
-          ref={profileCardRef}
-          className="fixed top-20 left-8 bg-white rounded-lg shadow-xl w-80 z-50 p-6"
-          onMouseEnter={() => {
-            setIsProfileCardVisible(true);
-            setHoveredElement("header");
-          }}
-          onMouseLeave={() => setIsProfileCardVisible(false)}
-        >
-          <div className="flex justify-between items-start mb-6">
-            <div>
-              <h2 className="text-2xl font-bold">EMPOWER</h2>
-              <h3 className="text-xl">D</h3>
-              <p className="text-gray-600">DevPixel Lab</p>
-              <p className="text-gray-600">Bangladesh</p>
-            </div>
-          </div>
+ <div className="flex flex-col md:flex-row justify-center items-center min-h-[240px]  w-[96%] ml-7 ">
+  {/* Left Section */}
+  <div className="bg-black bg-opacity-80 text-white p-6  h-60 w-[460px] ">
+   <h4 className="bg-gradient-to-r from-blue-500 to-blue-700 text-white text-[10px] font-bold rounded-full w-[51px] h-[27px] flex items-center justify-center uppercase">
+  pro
+</h4>
 
-          <div className="flex space-x-4 mb-6">
-            <span className="bg-gray-100 px-3 py-1 rounded-full text-sm">
-              Freelance
-            </span>
-            <span className="bg-gray-100 px-3 py-1 rounded-full text-sm">
-              Full-Time
-            </span>
-          </div>
 
-          <div className="grid grid-cols-3 gap-4 mb-6">
-            <div className="text-center">
-              <p className="font-bold">2.1K</p>
-              <p className="text-sm text-gray-600">Appreciations</p>
-            </div>
-            <div className="text-center">
-              <p className="font-bold">311</p>
-              <p className="text-sm text-gray-600">Followers</p>
-            </div>
-            <div className="text-center">
-              <p className="font-bold">18.8K</p>
-              <p className="text-sm text-gray-600">Project Views</p>
-            </div>
-          </div>
+    <h2 className="text-[21px] font-bold mb-2">Try Behance Pro</h2>
+    <p className="mb-4 text-[14px]">
+      Advanced analytics, your own customized portfolio website, and more features to grow your creative career.
+    </p>
+    <button className="bg-white text-black px-4 py-2 rounded-md font-medium hover:bg-gray-200 transition">
+      Start your 7 day free trial
+    </button>
+  </div>
 
-          <div className="flex space-x-4">
-            <button
-              className="bg-blue-600 text-white px-4 py-2 rounded-full flex-1 hover:bg-blue-700"
-              onClick={() => console.log("Follow clicked")}
-            >
-              Follow
-            </button>
-            <button
-              className="border border-blue-600 text-blue-600 px-4 py-2 rounded-full flex-1 hover:bg-blue-50"
-              onClick={() => console.log("Hire clicked")}
-            >
-              Hire
-            </button>
-          </div>
-        </div>
-      )}
-      {showProfilePopup && (
-        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 z-40">
-          <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div className="flex items-center space-x-4">
-              <img
-                src="https://mir-s3-cdn-cf.behance.net/user/100/6b05591628706871.67ad2a7389d1d.png"
-                className="w-12 h-12 rounded-full object-cover"
-                alt="DevPixel Lab"
-              />
-              <div>
-                <h3 className="font-bold">DevPixel Lab's profile</h3>
-                <p className="text-gray-600">DevPixel is available for hire</p>
-                <div className="flex items-center space-x-4 mt-1">
-                  <span className="text-green-600 text-sm flex items-center">
-                    <svg
-                      className="w-4 h-4 mr-1"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Availability: Now
-                  </span>
-                  <span className="text-blue-600 text-sm flex items-center">
-                    <svg
-                      className="w-4 h-4 mr-1"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    Responds quickly
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="flex space-x-3">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full transition">
-                Hire DevPixel
-              </button>
-              <button
-                onClick={() => setShowProfilePopup(false)}
-                className="p-2 text-gray-500 hover:text-gray-700"
-                aria-label="Close"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+  {/* Right Section */}
+  <div className="relative w-full md:w-[90%] h-[240px] overflow-hidden">
+    <img
+      src="https://a5.behance.net/6ff352f25ed83587136c97fa7102270429db7bdf/img/creator_pro/pro-profile-banner-background-2x.webp"
+      alt="Background"
+      className="w-[890px] h-full object-cover"
+    />
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div className=" bg-opacity-90 p-4 rounded-lg mt-18">
+        <img
+          src="https://a5.behance.net/6ff352f25ed83587136c97fa7102270429db7bdf/img/creator_pro/pro-profile-banner-medium-overlay-2x.webp"
+          alt="Overlay"
+          className="h-[170px] object-contain"
+        />
+      </div>
     </div>
+  </div>
+</div>
+
+</div>
+
+
+
+
+<footer className="bg-black text-white px-8 py-10 text-sm mt-3 w-[100%]">
+  <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-10 mb-50">
+    {/* Logo */}
+    <div>
+      <h1 className="text-[40px] font-bold">Bēhance</h1>
+    </div>
+
+    {/* Column 1 */}
+    <div>
+      <h4 className=" mb-3 space-y-5 text-[16px] font-bold">Built For Creatives</h4>
+      <ul className="space-y-5 text-[16px] font-bold">
+        <li>Try Behance Pro</li>
+        <li>Find Inspiration</li>
+        <li>Get Hired</li>
+        <li>Sell Creative Assets</li>
+        <li>Sell Freelance Services</li>
+      </ul>
+    </div>
+
+    {/* Column 2 */}
+    <div>
+      <h4 className="space-y-5 text-[16px] font-bold mb-3">Find Talent</h4>
+      <ul className="space-y-5 text-[16px] font-bold ">
+        <li>Post a Job</li>
+        <li>Graphic Designers</li>
+        <li>Photographers</li>
+        <li>Video Editors</li>
+        <li>Web Designers</li>
+        <li>Illustrators</li>
+      </ul>
+    </div>
+
+    {/* Column 3 */}
+    <div>
+      <h4 className="space-y-5 text-[16px] font-bold mb-3">Behance</h4>
+      <ul className="space-y-5 text-[16px] font-bold">
+        <li>About Behance</li>
+        <li>Adobe Portfolio</li>
+        <li>Download the App</li>
+        <li>Blog</li>
+        <li>Careers</li>
+        <li>Help Center</li>
+        <li>Contact Us</li>
+      </ul>
+    </div>
+
+    {/* Column 4 */}
+    <div>
+      <h4 className="space-y-5 text-[16px] font-bold mb-3">Social</h4>
+      <ul className="space-y-5 text-[16px] font-bold">
+        <li>📷 Instagram</li>
+        <li>🐦 Twitter</li>
+        <li>📌 Pinterest</li>
+        <li>📘 Facebook</li>
+        <li>💼 LinkedIn</li>
+      </ul>
+    </div>
+  </div>
+
+  {/* Bottom Bar */}
+  <div className="mt-10 border-t border-gray-700 pt-6 flex flex-col md:flex-row justify-between items-center text-xs">
+    <div className="flex items-center space-x-2 ">
+      <img src="https://mir-s3-cdn-cf.behance.net/user/100/47d2b72004284259.682ac22daba21.png" alt="Adobe" className="w-10 h-10" />
+      <p className="space-y-5 text-[16px] font-bold pr-4">Adeobe</p>
+      <span className="pl-10">© 2025 Adobe Inc. All rights reserved.</span>
+    </div>
+    <div className="flex flex-wrap gap-4 mt-3 md:mt-3 space-y-5 text-[12px] font-bold pr-4 pt-4">
+      <span>English ▾</span>
+      <span>TOU</span>
+      <span>Privacy</span>
+      <span>Community</span>
+      <span>Cookie preferences</span>
+      <span>Do not sell or share my personal information</span>
+    </div>
+  </div>
+</footer>
+
+  
+    </div>
+    
   );
 };
 
